@@ -1,4 +1,8 @@
 <?php
+/**
+ * This is the bootstrap file for test application.
+ * This file should be removed when the application is deployed for production.
+ */
 
 // set environment
 require_once(dirname(__FILE__) . '/protected/extensions/yii-environment/Environment.php');
@@ -12,4 +16,3 @@ defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', $env->yiiTraceLevel);
 require_once($env->yiiPath);
 $env->runYiiStatics(); // like Yii::setPathOfAlias()
 Yii::createWebApplication($env->config)->run();
-
