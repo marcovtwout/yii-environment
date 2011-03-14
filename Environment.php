@@ -128,19 +128,6 @@
  *     // Supplied config elements will be merged into the main config array.
  *     'config' => array(
  * }}}
- * 
- * ===Usage example for checking environment in code===
- * 
- * {{{
- * <?php
- * // Compare if the current environment is lower than production
- * $currentEnvironment = Yii::app()->getParams()->environment; //gets integer
- * if ($currentEnvironment < Environment::PRODUCTION) {
- *     //do this
- * } else {
- *     //do that
- * }
- * }}}
  *
  */
 class Environment
@@ -217,20 +204,18 @@ class Environment
 		// Load specific config
 		$fileSpecificConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.self::CONFIG_DIR.DIRECTORY_SEPARATOR.'mode_'.strtolower($this->_mode).'.php';
 		if (!file_exists($fileSpecificConfig))
-			throw new Exception('Cannot find specific config file "'.$fileSpecificConfig.'".');
+			throw new Exception('Cannot find mode specific config file "'.$fileSpecificConfig.'".');
 		$configSpecific = require($fileSpecificConfig);
 
 		// Merge specific config into main config
-		require_once('array_replace_recursive.php'); // support for PHP <5.3
-		$config = array_replace_recursive($configMain, $configSpecific);
+		$config = self::mergeArray($configMain, $configSpecific);
 
 		// If one exists, load local config
-		$configLocal = array();
 		$fileLocalConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.self::CONFIG_DIR.DIRECTORY_SEPARATOR.'local.php';
 		if (file_exists($fileLocalConfig)) {
 			// Merge local config into previously merged config
 			$configLocal = require($fileLocalConfig);
-			$config = array_replace_recursive($config, $configLocal);
+			$config = self::mergeArray($config, $configLocal);
 		}
 
 		// Set attributes
@@ -255,6 +240,39 @@ class Environment
 		foreach($this->yiiSetPathOfAlias as $alias => $path) {
 			Yii::setPathOfAlias($alias, $path);
 		}
+	}
+	
+	/**
+	 * Show current Environment class values
+	 */
+	public function showDebug()
+	{
+		echo '<div style="position: absolute; bottom: 0; z-index: 99; height: 250px; overflow: auto; background-color: #ddd; color: #000; border: 1px solid #000; margin: 5px; padding: 5px;">
+			<pre>'.htmlspecialchars(print_r($this, true)).'</pre></div>';
+	}
+	
+	/**
+	 * Merges two arrays into one recursively.
+	 * @param array $a array to be merged to
+	 * @param array $b array to be merged from
+	 * @return array the merged array (the original arrays are not changed.)
+	 *
+	 * Taken from Yii's CMap::mergeArray, since php does not supply a native
+	 * function that produces the required result.
+	 * @see http://www.yiiframework.com/doc/api/1.1/CMap#mergeArray-detail
+	 */
+	private static function mergeArray($a,$b)
+	{
+		foreach($b as $k=>$v)
+		{
+			if(is_integer($k))
+				$a[]=$v;
+			else if(is_array($v) && isset($a[$k]) && is_array($a[$k]))
+				$a[$k]=self::mergeArray($a[$k],$v);
+			else
+				$a[$k]=$v;
+		}
+		return $a;
 	}
 
 }
