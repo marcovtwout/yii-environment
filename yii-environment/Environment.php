@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 1.3
+ * @version 1.3.1
  *
  * =Environment-class=
  * 
@@ -59,6 +59,7 @@
  * defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', $env->yiiTraceLevel);
  * 
  * // run Yii app
+ * //$env->showDebug(); // show produced environment configuration
  * require_once($env->yiiPath);
  * $env->runYiiStatics(); // like Yii::setPathOfAlias()
  * Yii::createWebApplication($env->config)->run();
@@ -132,11 +133,11 @@
  */
 class Environment
 {
-	// Environment settings
-	const SERVER_VAR = 'YII_ENVIRONMENT';
-	const CONFIG_DIR = '../../../protected/config/'; //relative to this file
+	// Environment settings (extend Environment class if you want to change these)
+	const SERVER_VAR = 'YII_ENVIRONMENT';				//Apache SetEnv var
+	const CONFIG_DIR = '../../../protected/config/';	//relative to this file
 
-	// Valid modes
+	// Valid modes (extend Environment class if you want to change or add to these)
 	const DEVELOPMENT = 100;
 	const TEST = 200;
 	const STAGING = 300;
@@ -146,15 +147,17 @@ class Environment
 	private $_mode;
 
 	// Environment Yii properties
-	public $yiiPath;
-	public $yiitPath;
-	public $yiiDebug;
-	public $yiiTraceLevel;
-	public $config;
+	public $yiiPath;			// path to yii.php
+	public $yiitPath;			// path to yiit.php
+	public $yiiDebug;			// int
+	public $yiiTraceLevel;		// int
 	
 	// Environment Yii statics to run
 	// @see http://www.yiiframework.com/doc/api/1.1/YiiBase#setPathOfAlias-detail
 	public $yiiSetPathOfAlias = array();	// array with "$alias=>$path" elements
+	
+	// Web application config
+	public $config;				// config array
 
 	/**
 	 * Initilizes the Environment class with the given mode
