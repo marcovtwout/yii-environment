@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 1.4-dev
+ * @version 1.4
  *
  * =Environment-class=
  * 
@@ -32,14 +32,14 @@
  * Httpd.conf example:
  * 
  * <Directory "C:\www">
- *    # Set Yii environment
- * 	  SetEnv YII_ENVIRONMENT DEVELOPMENT
+ *     # Set Yii environment
+ * 	   SetEnv YII_ENVIRONMENT DEVELOPMENT
  * </Directory>
  * 
  * ==Installation==
  * 
  *  # Put the yii-environment directory in `protected/extensions/`
- *  # Modify your index.php or other bootstrap file
+ *  # Modify your index.php (and other bootstrap files)
  *  # Modify your main.php config file and add mode specific configs
  *  # Set your local environment
  * 
@@ -50,7 +50,7 @@
  * {{{
  * <?php
  * // set environment
- * require_once(dirname(__FILE__) . '/protected/extensions/environment/Environment.php');
+ * require_once(dirname(__FILE__) . '/protected/extensions/yii-environment/Environment.php');
  * $env = new Environment();
  * //$env = new Environment('PRODUCTION'); //override mode
  * 
@@ -100,6 +100,9 @@
  *     // This is the main Web application configuration. Any writable
  *     // CWebApplication properties can be configured here.
  *     'config' => array(
+ *         (...)
+ * 	   ),
+ * );
  * }}}
  * 
  * ===Create mode-specific config files===
@@ -128,20 +131,23 @@
  *     // This is the specific Web application configuration for this mode.
  *     // Supplied config elements will be merged into the main config array.
  *     'config' => array(
+ *         (...)
+ * 	   ),
+ * );
  * }}}
  *
  */
 class Environment
 {
 	// Environment settings (extend Environment class if you want to change these)
-	const SERVER_VAR = 'YII_ENVIRONMENT';				//Apache SetEnv var
-	const CONFIG_DIR = '../../../protected/config/';	//relative to this file
+	const SERVER_VAR = 'YII_ENVIRONMENT';			//Apache SetEnv var
+	const CONFIG_DIR = '../../config/';				//relative to Environment.php
 
 	// Valid modes (extend Environment class if you want to change or add to these)
-	const DEVELOPMENT = 100;
-	const TEST = 200;
-	const STAGING = 300;
-	const PRODUCTION = 400;
+	const MODE_DEVELOPMENT = 100;
+	const MODE_TEST = 200;
+	const MODE_STAGING = 300;
+	const MODE_PRODUCTION = 400;
 
 	// Selected mode
 	private $_mode;
@@ -170,24 +176,25 @@ class Environment
 	}
 
 	/**
-	 * Get current environment mode depending on environment variable
+	 * Get current environment mode depending on environment variable.
+	 * Override this function if you want to change this method.
 	 * @param string $mode
 	 * @return string
 	 */
 	private function getMode($mode = null)
 	{
-		// If not overriden
+		// If not manually set
 		if (!isset($mode))
 		{
 			// Return mode based on Apache server var
-			if (isset($_SERVER[self::SERVER_VAR]))
-				$mode = $_SERVER[self::SERVER_VAR];
+			if (isset($_SERVER[constant(get_class($this).'::SERVER_VAR')]))
+				$mode = $_SERVER[constant(get_class($this).'::SERVER_VAR')];
 			else
-				throw new Exception('"SetEnv '.self::SERVER_VAR.' <mode>" not defined in Apache config.');
+				throw new Exception('"SetEnv '.constant(get_class($this).'::SERVER_VAR').' <mode>" not defined in Apache config.');
 		}
-
+		
 		// Check if mode is valid
-		if (!defined('self::'.$mode))
+		if (!defined(get_class($this).'::MODE_'.$mode))
 			throw new Exception('Invalid Environment mode supplied or selected');
 
 		return $mode;
@@ -199,13 +206,13 @@ class Environment
 	private function setEnvironment()
 	{
 		// Load main config
-		$fileMainConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.self::CONFIG_DIR.DIRECTORY_SEPARATOR.'main.php';
+		$fileMainConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.constant(get_class($this).'::CONFIG_DIR').DIRECTORY_SEPARATOR.'main.php';
 		if (!file_exists($fileMainConfig))
 			throw new Exception('Cannot find main config file "'.$fileMainConfig.'".');
 		$configMain = require($fileMainConfig);
 
 		// Load specific config
-		$fileSpecificConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.self::CONFIG_DIR.DIRECTORY_SEPARATOR.'mode_'.strtolower($this->_mode).'.php';
+		$fileSpecificConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.constant(get_class($this).'::CONFIG_DIR').DIRECTORY_SEPARATOR.'mode_'.strtolower($this->_mode).'.php';
 		if (!file_exists($fileSpecificConfig))
 			throw new Exception('Cannot find mode specific config file "'.$fileSpecificConfig.'".');
 		$configSpecific = require($fileSpecificConfig);
@@ -214,7 +221,7 @@ class Environment
 		$config = self::mergeArray($configMain, $configSpecific);
 
 		// If one exists, load local config
-		$fileLocalConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.self::CONFIG_DIR.DIRECTORY_SEPARATOR.'local.php';
+		$fileLocalConfig = dirname(__FILE__).DIRECTORY_SEPARATOR.constant(get_class($this).'::CONFIG_DIR').DIRECTORY_SEPARATOR.'local.php';
 		if (file_exists($fileLocalConfig)) {
 			// Merge local config into previously merged config
 			$configLocal = require($fileLocalConfig);
