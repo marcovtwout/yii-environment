@@ -23,6 +23,8 @@
  * 
  * The Environment is determined by $_SERVER[YII_ENVIRONMENT], created
  * by Apache's SetEnv directive. This can be modified in getMode()
+ *
+ * If you want to customize this class or its config and modes, extend it (see ExampleEnvironment.php)
  * 
  * ==Setting environment==
  * 
