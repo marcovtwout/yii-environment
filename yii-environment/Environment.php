@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 1.4
+ * @version 1.5-dev
  *
  * =Environment-class=
  * 
