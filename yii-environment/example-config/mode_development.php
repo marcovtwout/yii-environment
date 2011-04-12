@@ -45,6 +45,7 @@ return array(
 				'connectionString' => 'mysql:host=DEVELOPMENT_HOST;dbname=DEVELOPMENT_DB',
 				'username' => 'USERNAME',
 				'password' => 'PASSWORD',
+				'enableParamLogging' => true,
 			),
 
 			// Application Log
