@@ -86,8 +86,8 @@
  * <?php
  * return array(
  *     // Set yiiPath (relative to Environment.php)
- *     'yiiPath' => realpath(dirname(__FILE__) . '/../../../yii/framework/yii.php'),
- *     'yiitPath' => realpath(dirname(__FILE__) . '/../../../yii/framework/yiit.php'),
+ *     'yiiPath' => dirname(__FILE__) . '/../../../yii/framework/yii.php',
+ *     'yiitPath' => dirname(__FILE__) . '/../../../yii/framework/yiit.php',
  * 
  *     // Set YII_DEBUG and YII_TRACE_LEVEL flags
  *     'yiiDebug' => true,
@@ -117,8 +117,8 @@
  * <?php
  * return array(
  *     // Set yiiPath (relative to Environment.php)
- *     //'yiiPath' => realpath(dirname(__FILE__) . '/../../../yii/framework/yii.php'),
- *     //'yiitPath' => realpath(dirname(__FILE__) . '/../../../yii/framework/yiit.php'),
+ *     //'yiiPath' => dirname(__FILE__) . '/../../../yii/framework/yii.php',
+ *     //'yiitPath' => dirname(__FILE__) . '/../../../yii/framework/yiit.php',
  * 
  *     // Set YII_DEBUG and YII_TRACE_LEVEL flags
  *     'yiiDebug' => true,
