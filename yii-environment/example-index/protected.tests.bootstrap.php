@@ -8,4 +8,4 @@ $env = new Environment('TEST'); //override mode
 require_once($env->yiitPath);
 require_once(dirname(__FILE__).'/WebTestCase.php');
 $env->runYiiStatics(); // like Yii::setPathOfAlias()
-Yii::createWebApplication($env->config);
+Yii::createWebApplication($env->configWeb);

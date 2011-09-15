@@ -7,7 +7,7 @@ require('Environment.php');
  * or CONFIG_DIR, or want to use other than the predefined modes.
  *
  * If you use the extended class, don't forget to require and create it from your
- * bootstrap file, instead of the base Environment class.
+ * bootstrap file instead of the base Environment class.
  */
 class ExampleEnvironment extends Environment
 {
