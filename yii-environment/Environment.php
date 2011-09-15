@@ -276,9 +276,9 @@ class Environment
 
 		// Set attributes
 		$this->yiiPath = $config['yiiPath'];
-		if (isset($config['yiicPath'])
+		if (isset($config['yiicPath']))
 			$this->yiicPath = $config['yiicPath'];
-		if (isset($config['yiitPath'])
+		if (isset($config['yiitPath']))
 			$this->yiicPath = $config['yiitPath'];
 		$this->yiiDebug = $config['yiiDebug'];
 		$this->yiiTraceLevel = $config['yiiTraceLevel'];
