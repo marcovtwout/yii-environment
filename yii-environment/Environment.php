@@ -1,6 +1,6 @@
 <?php
 
-/*
+/**
  * @name Environment
  * @author Marco van 't Wout | Tremani
  * @version 2.1-dev
