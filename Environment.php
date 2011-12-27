@@ -366,7 +366,7 @@ class Environment
 			if (is_array($value))
 				$this->processInherits($value, array_merge($path, array($key)));
 
-			if ($value == self::INHERIT_KEY)
+			if ($value === self::INHERIT_KEY)
 				$value = $this->getValueFromArray($this->configWeb, array_reverse(array_merge($path, array($key))));
 		}
 	}
