@@ -183,7 +183,7 @@ class Environment
 	const INHERIT_KEY = 'inherit';
 
 	// Selected mode
-	private $_mode;
+	protected $_mode;
 
 	// Environment Yii properties
 	public $yiiPath;			// path to yii.php
