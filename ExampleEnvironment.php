@@ -3,22 +3,32 @@
 require('Environment.php');
 
 /**
- * This is an example Environment, for when you want to use a custom SERVER_VAR
- * or CONFIG_DIR, or want to use other than the predefined modes.
+ * This is an example Environment, for when you want to use a custom $envVar
+ * or $configDir, or want to use other than the predefined modes.
  *
- * If you use the extended class, don't forget to require and create it from your
- * bootstrap file instead of the base Environment class.
+ * If you use the extended class, don't forget to modify your bootstrap file as well
+ * to call this class.
  */
 class ExampleEnvironment extends Environment
 {
-	// Environment settings (extend Environment class if you want to change these)
-	const SERVER_VAR = 'EXAMPLE_ENVIRONMENT';		//Apache SetEnv var
-	const CONFIG_DIR = '/path/to/config/';			//relative to Environment.php
-	
-	// Valid modes (extend Environment class if you want to change or add to these)
-	//const MODE_DEVELOPMENT = 100;			//these are already in standard Environment)
-	//const MODE_TEST = 200;
-	const MODE_QUALITY_ASSURANCE = 250;		//this is a new one for some QA-environment
-	//const MODE_STAGING = 300;
-	//const MODE_PRODUCTION = 400;
+	/**
+	 * @var string name of env var to check
+	 */
+	protected $envVar = 'MY_ENVIRONMENT';
+
+	/**
+	 * @var string config dir, relative to Environment.php
+	 */
+	protected $configDir = '../some/alternative/path/';
+
+	/**
+	 * Extend Environment class and merge parent array if you want to modify/extend these
+	 * @return array list of valid modes
+	 */
+	function getValidModes()
+	{
+		return array_merge(parent::getValidModes(), array(
+			250 => 'QUALITY_ENSURANCE',
+		));
+	}
 }
