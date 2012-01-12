@@ -360,7 +360,7 @@ class Environment
 	 */
 	public function showDebug()
 	{
-		echo '<div style="position: absolute; bottom: 0; z-index: 99; height: 250px; overflow: auto; background-color: #ddd; color: #000; border: 1px solid #000; margin: 5px; padding: 5px;">
+		echo '<div style="position: absolute; bottom: 0; left: 0; z-index: 99999; height: 250px; overflow: auto; background-color: #ddd; color: #000; border: 1px solid #000; margin: 5px; padding: 5px;">
 			<pre>'.htmlspecialchars(print_r($this, true)).'</pre></div>';
 	}
 
