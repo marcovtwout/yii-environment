@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 3.0-dev
+ * @version 3.0
  *
  * =Environment-class=
  *
@@ -21,7 +21,7 @@
  * This class was designed to have minimal impact on the default Yii generated files.
  * Minimal changes to the index/bootstrap and existing config files are needed.
  *
- * The Environment is determined by getenv(self::YII_ENVIRONMENT), which searches $_SERVER and $_ENV).
+ * The Environment is determined with PHP's getenv(), which searches $_SERVER and $_ENV.
  * There are multiple ways to set the environment depending on your preference.
  * Setting the environment variable is trivial on both Windows and Linux, instructions included.
  *
@@ -81,11 +81,11 @@
  * Your `protected/config/` directory will look like this:
  *
  *  * config/main.php                     (Global configuration)
- *  * config/mode_development.php         (Mode-specific configurations)
+ *  * config/mode_development.php         (Environment-specific configurations)
  *  * config/mode_test.php
  *  * config/mode_staging.php
  *  * config/mode_production.php
- *  * config/local.php                    (Local override for mode-specific config. Don't put in your SVN!)
+ *  * config/local.php                    (Optional, local override for mode-specific config. Don't put in your SVN!)
  *
  * ===Modify your config/main.php===
  *
