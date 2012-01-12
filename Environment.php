@@ -40,7 +40,7 @@
  *
  *  * Windows:
  *    # Go to: Control Panel > System > Advanced > Environment Variables
- *    # Add new variable: name = YII_ENVIRONMENT, value = DEVELOPMENT
+ *    # Add new SYSTEM variable: name = YII_ENVIRONMENT, value = DEVELOPMENT
  *    * Details: http://support.microsoft.com/kb/310519/en-us
  *  * Linux:
  *    # Modify your profile file:
@@ -53,6 +53,9 @@
  *    # Modify your httpd.conf or create a .htaccess file
  *    # Add: SetEnv YII_ENVIRONMENT DEVELOPMENT
  *    * Details: http://httpd.apache.org/docs/1.3/mod/mod_env.html#setenv
+ *
+ * Q: After setting environment var, I get "Environment cannot be determined" when accessing the web application.
+ * A: Make sure the "user" executing Apache can access the environment variable (by setting it as a system/global var)
  *
  * ===Index.php usage example:===
  *
