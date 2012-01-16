@@ -24,6 +24,7 @@
  * The Environment is determined with PHP's getenv(), which searches $_SERVER and $_ENV.
  * There are multiple ways to set the environment depending on your preference.
  * Setting the environment variable is trivial on both Windows and Linux, instructions included.
+ * You can optionally override the environment by creating a mode.php in the config directory.
  *
  * If you want to customize this class or its config and modes, extend it! (see ExampleEnvironment.php)
  *
@@ -46,6 +47,7 @@
  *    # Modify your profile file:
  *      * Locally: ~/.profile or ~/.bash_profile (exact filename depends on your linux distro)
  *      * Globally: /etc/profile
+ *      * Apache: /etc/apache2/envvars (if apache process doesn't use bash shell, try this file)
  *    # Add: export YII_ENVIRONMENT="DEVELOPMENT"
  *    * Details: http://www.cyberciti.biz/faq/linux-unix-set-java_home-path-variable/
  *  * Apache only: (cannot be used for console applications)
@@ -53,9 +55,12 @@
  *    # Modify your httpd.conf or create a .htaccess file
  *    # Add: SetEnv YII_ENVIRONMENT DEVELOPMENT
  *    * Details: http://httpd.apache.org/docs/1.3/mod/mod_env.html#setenv
+ *  * Project only:
+ *    # Create a file `mode.php` in the config directory of your application.
+ *    # Set the contents of the file to: DEVELOPMENT
  *
  * Q: After setting environment var, I get "Environment cannot be determined" when accessing the web application.
- * A: Make sure the "user" executing Apache can access the environment variable (by setting it as a system/global var)
+ * A: Make sure that where the Apache process starts, it can access the environment variable (by setting it as a system/global var).
  *
  * ===Index.php usage example:===
  *
@@ -185,7 +190,7 @@ class Environment
 	protected $envVar = 'YII_ENVIRONMENT';
 
 	/**
-	 * @var string config dir, relative to Environment.php
+	 * @var string config dir (relative to Environment.php)
 	 */
 	protected $configDir = '../../config/';
 
@@ -193,6 +198,11 @@ class Environment
 	 * @var string selected environment mode
 	 */
 	protected $mode;
+
+	/**
+	 * @var string path to file (relative to Environment.php) that overrides environment, if exists
+	 */
+	protected $modeFile = '../../config/mode.php';
 
 	/**
 	 * @var string path to yii.php
@@ -254,6 +264,7 @@ class Environment
 
 	/**
 	 * Set current environment mode depending on environment variable.
+	 * Also checks if there is a mode file that might override this environment.
 	 * Override this function if you want to change this method.
 	 * @param string $mode if left empty, determine automatically
 	 */
@@ -262,10 +273,16 @@ class Environment
 		// If not overridden
 		if ($mode === null)
 		{
-			// Return mode based on environment var
-			$mode = getenv($this->envVar);
-			if ($mode === false)
-				throw new Exception('"Environment mode cannot be determined, see class for instructions.');
+			$modeFilePath = dirname(__FILE__).DIRECTORY_SEPARATOR.$this->modeFile;
+			if (file_exists($modeFilePath)) {
+				// Is there a mode file?
+				$mode = trim(file_get_contents($modeFilePath));
+			} else {
+				// Else, return mode based on environment var
+				$mode = getenv($this->envVar);
+				if ($mode === false)
+					throw new Exception('"Environment mode cannot be determined, see class for instructions.');
+			}
 		}
 
 		// Check if mode is valid
