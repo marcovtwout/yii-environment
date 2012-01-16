@@ -59,8 +59,9 @@
  *    # Create a file `mode.php` in the config directory of your application.
  *    # Set the contents of the file to: DEVELOPMENT
  *
- * Q: After setting environment var, I get "Environment cannot be determined" when accessing the web application.
- * A: Make sure that where the Apache process starts, it can access the environment variable (by setting it as a system/global var).
+ * Problems?
+ *  * Q: After setting environment var, I get "Environment cannot be determined" when accessing the web application.
+ *  * A: Make sure that where the Apache process starts, it can access the environment variable (by setting it as a system/global var).
  *
  * ===Index.php usage example:===
  *
