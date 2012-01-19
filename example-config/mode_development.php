@@ -19,7 +19,7 @@ return array(
 	// Set YII_DEBUG and YII_TRACE_LEVEL flags
 	'yiiDebug' => true,
 	'yiiTraceLevel' => 3,
-	
+
 	// Static function Yii::setPathOfAlias()
 	'yiiSetPathOfAlias' => array(
 		// uncomment the following to define a path alias
@@ -40,6 +40,11 @@ return array(
 
 		// Application components
 		'components' => array(
+
+			// Asset manager
+			'assetManager' => array(
+				'linkAssets' => true, // publish symbolic links for easier developing
+			),
 
 			// Database
 			'db' => array(
@@ -71,7 +76,7 @@ return array(
 		),
 
 	),
-	
+
 	// This is the Console application configuration. Any writable
 	// CConsoleApplication properties can be configured here.
     // Leave array empty if not used.
