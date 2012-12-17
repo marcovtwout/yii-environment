@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 3.2-dev
+ * @version 3.2
  *
  * =Environment-class=
  *
@@ -281,7 +281,7 @@ class Environment
 
 		$this->mode = $mode;
 	}
-	
+
 	/**
 	 * Determine current environment mode depending on environment variable.
 	 * Also checks if there is a mode file that might override this environment.
