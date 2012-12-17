@@ -293,13 +293,14 @@ class Environment
 		$modeFilePath = dirname(__FILE__).DIRECTORY_SEPARATOR.$this->modeFile;
 		if (file_exists($modeFilePath)) {
 			// Is there a mode file?
-			return trim(file_get_contents($modeFilePath));
+			$mode = trim(file_get_contents($modeFilePath));
 		} else {
 			// Else, return mode based on environment var
-			return getenv($this->envVar);
+			$mode = getenv($this->envVar);
 			if ($mode === false)
 				throw new Exception('"Environment mode cannot be determined, see class for instructions.');
 		}
+		return $mode;
 	}
 
 	/**
