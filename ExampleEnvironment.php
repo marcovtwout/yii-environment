@@ -33,7 +33,7 @@ class ExampleEnvironment extends Environment
 	function getValidModes()
 	{
 		return array_merge(parent::getValidModes(), array(
-			250 => 'QUALITY_ENSURANCE',
+			250 => 'QUALITY_ASSURANCE',
 		));
 	}
 }
