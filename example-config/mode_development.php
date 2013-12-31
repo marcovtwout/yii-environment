@@ -20,12 +20,6 @@ return array(
 	'yiiDebug' => true,
 	'yiiTraceLevel' => 3,
 
-	// Static function Yii::setPathOfAlias()
-	'yiiSetPathOfAlias' => array(
-		// uncomment the following to define a path alias
-		//'local' => 'path/to/local-folder'
-	),
-
 	// This is the specific Web application configuration for this mode.
 	// Supplied config elements will be merged into the main config array.
 	'configWeb' => array(

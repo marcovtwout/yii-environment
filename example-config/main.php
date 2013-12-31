@@ -16,18 +16,18 @@ return array(
 	'yiiDebug' => true,
 	'yiiTraceLevel' => 0,
 
-	// Static function Yii::setPathOfAlias()
-	'yiiSetPathOfAlias' => array(
-		// uncomment the following to define a path alias
-		//'local' => 'path/to/local-folder'
-	),
-
 	// This is the main Web application configuration. Any writable
 	// CWebApplication properties can be configured here.
 	'configWeb' => array(
-
+	
 		'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 		'name' => 'My Web Application',
+		
+		// Aliases
+		'aliases' => array(
+			// uncomment the following to define a path alias
+			//'local' => 'path/to/local-folder'
+		),
 
 		// Preloading 'log' component
 		'preload' => array('log'),
@@ -89,9 +89,12 @@ return array(
     // Leave array empty if not used.
     // Use value 'inherit' to copy from generated configWeb.
 	'configConsole' => array(
-
+	
 		'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 		'name' => 'My Console Application',
+		
+		// Aliases
+		'aliases' => 'inherit',
 
 		// Preloading 'log' component
 		'preload' => array('log'),

@@ -3,7 +3,7 @@
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 3.3-dev
+ * @version 4.0-dev
  *
  * =Environment-class=
  *
@@ -114,12 +114,6 @@
  *     'yiiDebug' => true,
  *     'yiiTraceLevel' => 0,
  *
- *     // Static function Yii::setPathOfAlias()
- *     'yiiSetPathOfAlias' => array(
- *         // uncomment the following to define a path alias
- *         //'local' => 'path/to/local-folder'
- *     ),
- *
  *     // This is the main Web application configuration. Any writable
  *     // CWebApplication properties can be configured here.
  *     'configWeb' => array(
@@ -153,12 +147,6 @@
  *     // Set YII_DEBUG and YII_TRACE_LEVEL flags
  *     'yiiDebug' => true,
  *     'yiiTraceLevel' => 0,
- *
- *     // Static function Yii::setPathOfAlias()
- *     'yiiSetPathOfAlias' => array(
- *         // uncomment the following to define a path alias
- *         //'local' => 'path/to/local-folder'
- *     ),
  *
  *     // This is the main Web application configuration. Any writable
  *     // CWebApplication properties can be configured here.
@@ -225,11 +213,6 @@ class Environment
 	 * @var int trace level
 	 */
 	public $yiiTraceLevel;
-	/**
-	 * @see http://www.yiiframework.com/doc/api/1.1/YiiBase#setPathOfAlias-detail
-	 * @var array array with "$alias=>$path" elements
-	 */
-	public $yiiSetPathOfAlias = array();
 	/**
 	 * @var array web config array
 	 */
@@ -367,21 +350,6 @@ class Environment
 			$this->configConsole = $config['configConsole'];
 			$this->processInherits($this->configConsole); // Process configConsole for inherits
 			$this->configConsole['params']['environment'] = strtolower($this->mode);
-		}
-
-		// Set Yii statics
-		$this->yiiSetPathOfAlias = $config['yiiSetPathOfAlias'];
-	}
-
-	/**
-	 * Run Yii static functions.
-	 * Call this function after including the Yii framework in your bootstrap file.
-	 */
-	public function runYiiStatics()
-	{
-		// Yii::setPathOfAlias();
-		foreach($this->yiiSetPathOfAlias as $alias => $path) {
-			Yii::setPathOfAlias($alias, $path);
 		}
 	}
 
