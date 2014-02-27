@@ -64,7 +64,6 @@ return array(
 				'emulatePrepare' => true,
 				'username' => '', //override in config/mode_<mode>.php
 				'password' => '', //override in config/mode_<mode>.php
-				'charset' => 'utf8',
 			),
 
 			// Error handler
