@@ -22,6 +22,10 @@ You can optionally override the environment by creating a `mode.php` in the conf
 
 If you want to customize this class or its config and modes, extend it! (see [ExampleEnvironment.php](ExampleEnvironment.php))
 
+## Requirements
+
+Tested on Yii 1.1.8 - 1.1.14, should work on all versions.
+
 ## Installation
 
 1. Put the yii-environment directory in `protected/extensions/`
