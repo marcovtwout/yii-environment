@@ -45,20 +45,20 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
  * Locally: `~/.profile` or `~/.bash_profile` (exact filename depends on your linux distro)
  * Globally: `/etc/profile`
  * Apache: `/etc/apache2/envvars` (if apache process doesn't use bash shell, try this file)
-2. Add: `export YII_ENVIRONMENT="DEVELOPMENT"`
+2. Add the following line: `export YII_ENVIRONMENT="DEVELOPMENT"`
  * Details: http://www.cyberciti.biz/faq/linux-unix-set-java_home-path-variable/
 
 #### Apache only (cannot be used for console applications)
 
 1. Check if mod_env is enabled
- * Modify your `httpd.conf` or create a `.htaccess` file
- * Add: `SetEnv YII_ENVIRONMENT DEVELOPMENT`
+2. Open your `httpd.conf` or create a `.htaccess` file
+3. Add the following line: `SetEnv YII_ENVIRONMENT DEVELOPMENT`
  * Details: http://httpd.apache.org/docs/1.3/mod/mod_env.html#setenv
 
 #### Project only
 
 1. Create a file `mode.php` in the config directory of your application.
-2. Set the contents of the file to: `DEVELOPMENT`
+2. Set the content of the file to: `DEVELOPMENT`
 
 #### Problems?
 
@@ -131,14 +131,13 @@ return array(
 );
 ```
 
-Optional: in configConsole you can copy settings from configWeb by
-using value key `inherit` (see examples folder).
+Optional: in configConsole you can copy settings from configWeb by using value key `inherit` (see examples folder).
 
 ### Create mode-specific config files
 
 Create `config/mode_<mode>.php` files for the different modes. These will override or merge attributes that exist in the main config.
 
-Optional: also create a `config/local.php` file for local overrides
+Optional: also create a `config/local.php` file for local overrides.
 
 ```php
 return array(
