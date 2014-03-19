@@ -5,6 +5,7 @@
 
 - CHG: Removed function runYiiStatics(). Since Yii 1.1.14, you can now set path aliases in your configWeb. Remove calls to runYiiStatics() from your application, and see example-config/main.php for example on how to use aliases.
 
+
 ### 3.2
 
 - REFACTOR: split up setMode(), determine mode in separate function. Also update some docs.
@@ -16,6 +17,7 @@
 ### 3.0
 
 - CHG **attention**: use getenv() to determine environment mode (works for both webapps and console-apps). See updated instructions, it's not always backwards compatible.
+
 
 ### 2.5
 
@@ -39,7 +41,9 @@
 
 ### 2.0
 
-- Support for console applications! **HOW TO UPGRADE**: rename key 'config' to 'configWeb' in config files and index files.
+- Support for console applications!
+- **HOW TO UPGRADE**: rename key 'config' to 'configWeb' in config files and index files.
+
 
 ### 1.4
 
