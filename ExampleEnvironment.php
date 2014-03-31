@@ -9,31 +9,32 @@ require('Environment.php');
  * If you use the extended class, don't forget to modify your bootstrap file as well
  * to call this class.
  */
-class ExampleEnvironment extends Environment
+class ExampleEnvironment extends \Tremani\YiiEnvironment\Environment
 {
-	/**
-	 * @var string name of env var to check
-	 */
-	protected $envVar = 'MY_ENVIRONMENT';
 
-	/**
-	 * @var string config dir, relative to Environment.php
-	 */
-	protected $configDir = '../../../config/';
+    /**
+     * @var string name of env var to check
+     */
+    protected $envVar = 'MY_ENVIRONMENT';
 
-	/**
-	 * @var string path to file that might override environment variable
-	 */
-	protected $modeFile = '../../../config/mode.php';
+    /**
+     * @var string config dir, relative to Environment.php
+     */
+    protected $configDir = '../../../config/';
 
-	/**
-	 * Extend Environment class and merge parent array if you want to modify/extend these
-	 * @return array list of valid modes
-	 */
-	function getValidModes()
-	{
-		return array_merge(parent::getValidModes(), array(
-			250 => 'QUALITY_ASSURANCE',
-		));
-	}
+    /**
+     * @var string path to file that might override environment variable
+     */
+    protected $modeFile = '../../../config/mode.php';
+
+    /**
+     * Extend Environment class and merge parent array if you want to modify/extend these
+     * @return array list of valid modes
+     */
+    protected function getValidModes()
+    {
+        return array_merge(parent::getValidModes(), array(
+            250 => 'QUALITY_ASSURANCE',
+        ));
+    }
 }
