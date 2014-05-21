@@ -43,10 +43,10 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
 2. Add new SYSTEM variable: name = `YII_ENVIRONMENT`, value = `DEVELOPMENT`
  * Details: http://support.microsoft.com/kb/310519/en-us
 
-#### Linux
+#### Linux/Mac
 
 1. Open your profile file:
- * Locally: `~/.profile` or `~/.bash_profile` (exact filename depends on your linux distro)
+ * Locally: `~/.profile` or `~/.bash_profile` (exact filename depends on your distro)
  * Globally: `/etc/profile`
  * Apache: `/etc/apache2/envvars` (if apache process doesn't use bash shell, try this file)
 2. Add the following line: `export YII_ENVIRONMENT="DEVELOPMENT"`
