@@ -31,7 +31,7 @@ class Environment
     /**
      * @var string config dir
      */
-    protected $configDir = '../../../config/';
+    protected $configDir;
 
     /**
      * @var string path to yii.php
@@ -89,11 +89,22 @@ class Environment
      */
     public function __construct($mode = null, $configDir = null)
     {
-        if ($configDir !== null) {
-            $this->configDir = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
-        }
+        $this->setConfigDir($configDir);
         $this->setMode($mode);
         $this->setEnvironment();
+    }
+    
+    /**
+     * Set config dir.
+     * @param string $configDir
+     */
+    protected function setConfigDir($configDir)
+    {
+        if ($configDir !== null) {
+            $this->configDir = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        } else {
+            $this->configDir = __DIR__ . '/../../../config/';
+        }
     }
 
     /**
