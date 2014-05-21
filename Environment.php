@@ -4,7 +4,6 @@ namespace marcovtwout\YiiEnvironment;
 /**
  * @name Environment
  * @author Marco van 't Wout | Tremani
- * @version 4.1-dev
  *
  * Simple class used to set configuration and debugging depending on environment.
  * Using this you can predefine configurations for use in different environments,
@@ -23,21 +22,16 @@ class Environment
      * @var string name of env var to check
      */
     protected $envVar = 'YII_ENVIRONMENT';
-
-    /**
-     * @var string config dir (relative to Environment.php)
-     */
-    protected $configDir = '../../../config/';
-
+    
     /**
      * @var string selected environment mode
      */
     protected $mode;
 
     /**
-     * @var string path to file (relative to Environment.php) that overrides environment, if exists
+     * @var string config dir
      */
-    protected $modeFile = '../../../config/mode.php';
+    protected $configDir = '../../../config/';
 
     /**
      * @var string path to yii.php
@@ -91,9 +85,13 @@ class Environment
     /**
      * Initilizes the Environment class with the given mode
      * @param constant $mode used to override automatically setting mode
+     * @param string $configDir override default configDir
      */
-    public function __construct($mode = null)
+    public function __construct($mode = null, $configDir = null)
     {
+        if ($configDir !== null) {
+            $this->configDir = rtrim($configDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR;
+        }
         $this->setMode($mode);
         $this->setEnvironment();
     }
@@ -117,7 +115,7 @@ class Environment
 
         $this->mode = $mode;
     }
-
+    
     /**
      * Determine current environment mode depending on environment variable.
      * Also checks if there is a mode file that might override this environment.
@@ -126,10 +124,9 @@ class Environment
      */
     protected function determineMode()
     {
-        $modeFilePath = dirname(__FILE__) . DIRECTORY_SEPARATOR . $this->modeFile;
-        if (file_exists($modeFilePath)) {
+        if (file_exists($this->getModeFilePath())) {
             // Is there a mode file?
-            $mode = trim(file_get_contents($modeFilePath));
+            $mode = trim(file_get_contents($this->getModeFilePath()));
         } else {
             // Else, return mode based on environment var
             $mode = getenv($this->envVar);
@@ -139,14 +136,13 @@ class Environment
         }
         return $mode;
     }
-
+    
     /**
-     * Get full config dir
-     * @return string absolute path to config dir with trailing slash
+     * @return string mode file path
      */
-    protected function getConfigDir()
+    protected function getModeFilePath()
     {
-        return dirname(__FILE__) . DIRECTORY_SEPARATOR . $this->configDir . DIRECTORY_SEPARATOR;
+        return $this->configDir . 'mode.php';
     }
 
     /**
@@ -156,14 +152,14 @@ class Environment
     protected function getConfig()
     {
         // Load main config
-        $fileMainConfig = $this->getConfigDir() . 'main.php';
+        $fileMainConfig = $this->configDir . 'main.php';
         if (!file_exists($fileMainConfig)) {
             throw new \Exception('Cannot find main config file "' . $fileMainConfig . '".');
         }
         $configMain = require($fileMainConfig);
 
         // Load specific config
-        $fileSpecificConfig = $this->getConfigDir() . 'mode_' . strtolower($this->mode) . '.php';
+        $fileSpecificConfig = $this->configDir . 'mode_' . strtolower($this->mode) . '.php';
         if (!file_exists($fileSpecificConfig)) {
             throw new \Exception('Cannot find mode specific config file "' . $fileSpecificConfig . '".');
         }
@@ -173,7 +169,7 @@ class Environment
         $config = self::mergeArray($configMain, $configSpecific);
 
         // If one exists, load and merge local config
-        $fileLocalConfig = $this->getConfigDir() . 'local.php';
+        $fileLocalConfig = $this->configDir . 'local.php';
         if (file_exists($fileLocalConfig)) {
             $configLocal = require($fileLocalConfig);
             $config = self::mergeArray($config, $configLocal);
