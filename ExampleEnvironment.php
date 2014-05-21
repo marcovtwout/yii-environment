@@ -9,7 +9,7 @@ require('Environment.php');
  * If you use the extended class, don't forget to modify your bootstrap file as well
  * to call this class.
  */
-class ExampleEnvironment extends \Tremani\YiiEnvironment\Environment
+class ExampleEnvironment extends \marcovtwout\YiiEnvironment\Environment
 {
 
     /**
