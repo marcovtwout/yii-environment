@@ -1,0 +1,21 @@
+{
+	"name": "marcovtwout/yii-environment",
+	"description": "Environment class for Yii, used to set configuration for console and web apps depending on the server environment.",
+	"keywords": ["yii", "environment"],
+	"homepage": "https://github.com/marcovtwout/yii-environment",
+	"type": "library",
+	"license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Marco van 't Wout",
+            "email": "mr@vtwout.net"
+        }
+    ],
+	"support": {
+		"issues": "https://github.com/marcovtwout/yii-environment/issues?state=open",
+		"source": "https://github.com/marcovtwout/yii-environment"
+	},
+	"require": {
+		"php": ">=5.1.0"
+	}
+}
