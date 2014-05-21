@@ -1,7 +1,5 @@
 <?php
 
-require('Environment.php');
-
 /**
  * This is an example Environment, for when you want to use a custom $envVar
  * or $configDir, or want to use other than the predefined modes.
@@ -9,7 +7,7 @@ require('Environment.php');
  * If you use the extended class, don't forget to modify your bootstrap file as well
  * to call this class.
  */
-class ExampleEnvironment extends \marcovtwout\yii-environment\Environment
+class ExampleEnvironment extends \marcovtwout\YiiEnvironment\Environment
 {
 
     /**
