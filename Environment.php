@@ -27,7 +27,7 @@ class Environment
     /**
      * @var string config dir (relative to Environment.php)
      */
-    protected $configDir = '../../config/';
+    protected $configDir = '../../../config/';
 
     /**
      * @var string selected environment mode
@@ -37,7 +37,7 @@ class Environment
     /**
      * @var string path to file (relative to Environment.php) that overrides environment, if exists
      */
-    protected $modeFile = '../../config/mode.php';
+    protected $modeFile = '../../../config/mode.php';
 
     /**
      * @var string path to yii.php
