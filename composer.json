@@ -20,5 +20,10 @@
 	},
     "autoload": {
 		"psr-4": { "marcovtwout\\YiiEnvironment\\": "" }
-	}
+	},
+    "extra": {
+        "branch-alias": {
+            "dev-master": "5.0.x-dev"
+        }
+    }
 }
