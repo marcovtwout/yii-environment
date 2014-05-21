@@ -1,5 +1,5 @@
 <?php
-namespace marcovtwout\YiiEnvironment;
+namespace marcovtwout\yii-environment;
 
 /**
  * @name Environment
