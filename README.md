@@ -28,10 +28,23 @@ Tested on Yii 1.1.8 - 1.1.14, should work on all versions.
 
 ## Installation
 
-1. Put the yii-environment directory in `protected/extensions/`
+### Installation via Composer
+
+Since version 5 the preferred installation method is through [Composer](https://getcomposer.org/).
+We assume the vendor directory is placed in `protected/vendor`.
+
+1. Add the dependency to your project
+    
+    ```
+    php composer.phar require --prefer-dist marcovtwout/yii-environment "*"
+    ```
 2. Modify your `index.php` (and other bootstrap files)
 3. Modify your `main.php` config file and add mode specific config files
 4. Set your local environment (see next section)
+
+### Installation from zip file
+
+See the previous instructions: https://github.com/marcovtwout/yii-environment/tree/4.0.1#installation
 
 ### Setting environment
 
@@ -71,25 +84,9 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
 
 ## Usage
 
-### Index.php usage example:
+### Update bootstrap files
 
-See [example-index/index.php](example-index/index.php) or use the following code block:
-
-```php
-// set environment
-require_once(dirname(__FILE__) . '/protected/extensions/yii-environment/Environment.php');
-$env = new Environment();
-//$env = new Environment('PRODUCTION'); //override mode
-
-// set debug and trace level
-defined('YII_DEBUG') or define('YII_DEBUG', $env->yiiDebug);
-defined('YII_TRACE_LEVEL') or define('YII_TRACE_LEVEL', $env->yiiTraceLevel);
-
-// run Yii app
-//$env->showDebug(); // show produced environment configuration
-require_once($env->yiiPath);
-Yii::createWebApplication($env->configWeb)->run();
-```
+See [example-index/index.php](example-index/index.php)
 
 ### Structure of config directory
 
@@ -106,69 +103,19 @@ config/local.php                    (Optional, local override for mode-specific 
 
 ### Modify your config/main.php
 
-See [example-config/main.php](example-config/main.php) or use the following code block:
-
-```php
-return array(
-    // Set yiiPath (relative to Environment.php)
-    'yiiPath' => dirname(__FILE__) . '/../../../yii/framework/yii.php',
-    'yiicPath' => dirname(__FILE__) . '/../../../yii/framework/yiic.php',
-    'yiitPath' => dirname(__FILE__) . '/../../../yii/framework/yiit.php',
-
-    // Set YII_DEBUG and YII_TRACE_LEVEL flags
-    'yiiDebug' => true,
-    'yiiTraceLevel' => 0,
-
-    // This is the main Web application configuration. Any writable
-    // CWebApplication properties can be configured here.
-    'configWeb' => array(
-        (...)
-    ),
-
-    // This is the Console application configuration. Any writable
-    // CConsoleApplication properties can be configured here.
-    // Leave array empty if not used.
-    // Use value 'inherit' to copy from generated configWeb.
-    'configConsole' => array(
-        (...)
-    ),
-);
-```
+See [example-config/main.php](example-config/main.php)
 
 Optional: in configConsole you can copy settings from configWeb by using value key `inherit` (see examples folder).
 
 ### Create mode-specific config files
 
 Create `config/mode_<mode>.php` files for the different modes. These will override or merge attributes that exist in the main config.
+See [example-config/mode_development.php](example-config/mode_development.php)
+See [example-config/mode_test.php](example-config/mode_test.php)
+See [example-config/mode_staging.php](example-config/mode_staging.php)
+See [example-config/mode_production.php](example-config/mode_production.php)
 
 Optional: also create a `config/local.php` file for local overrides.
-
-```php
-return array(
-    // Set yiiPath (relative to Environment.php)
-    //'yiiPath' => dirname(__FILE__) . '/../../../yii/framework/yii.php',
-    //'yiicPath' => dirname(__FILE__) . '/../../../yii/framework/yiic.php',
-    //'yiitPath' => dirname(__FILE__) . '/../../../yii/framework/yiit.php',
-
-    // Set YII_DEBUG and YII_TRACE_LEVEL flags
-    'yiiDebug' => true,
-    'yiiTraceLevel' => 0,
-
-    // This is the main Web application configuration. Any writable
-    // CWebApplication properties can be configured here.
-    'configWeb' => array(
-        (...)
-    ),
-
-    // This is the Console application configuration. Any writable
-    // CConsoleApplication properties can be configured here.
-    // Leave array empty if not used
-    // Use value 'inherit' to copy from generated configWeb
-    'configConsole' => array(
-        (...)
-    ),
-);
-```
 
 ## Credits
 
