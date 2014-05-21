@@ -36,7 +36,7 @@ We assume the vendor directory is placed in `protected/vendor`.
 1. Add the dependency to your project
     
     ```
-    php composer.phar require --prefer-dist marcovtwout/yii-environment "*"
+    php composer.phar require marcovtwout/yii-environment "5.*"
     ```
 2. Modify your `index.php` (and other bootstrap files)
 3. Modify your `main.php` config file and add mode specific config files
