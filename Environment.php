@@ -112,7 +112,7 @@ class Environment
         // Check if mode is valid
         $mode = strtoupper($mode);
         if (!in_array($mode, $this->getValidModes(), true)) {
-            throw new Exception('Invalid environment mode supplied or selected.');
+            throw new \Exception('Invalid environment mode supplied or selected.');
         }
 
         $this->mode = $mode;
@@ -134,7 +134,7 @@ class Environment
             // Else, return mode based on environment var
             $mode = getenv($this->envVar);
             if ($mode === false) {
-                throw new Exception('"Environment mode cannot be determined, see class for instructions.');
+                throw new \Exception('"Environment mode cannot be determined, see class for instructions.');
             }
         }
         return $mode;
@@ -158,14 +158,14 @@ class Environment
         // Load main config
         $fileMainConfig = $this->getConfigDir() . 'main.php';
         if (!file_exists($fileMainConfig)) {
-            throw new Exception('Cannot find main config file "' . $fileMainConfig . '".');
+            throw new \Exception('Cannot find main config file "' . $fileMainConfig . '".');
         }
         $configMain = require($fileMainConfig);
 
         // Load specific config
         $fileSpecificConfig = $this->getConfigDir() . 'mode_' . strtolower($this->mode) . '.php';
         if (!file_exists($fileSpecificConfig)) {
-            throw new Exception('Cannot find mode specific config file "' . $fileSpecificConfig . '".');
+            throw new \Exception('Cannot find mode specific config file "' . $fileSpecificConfig . '".');
         }
         $configSpecific = require($fileSpecificConfig);
 
