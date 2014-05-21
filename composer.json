@@ -16,7 +16,7 @@
 		"source": "https://github.com/marcovtwout/yii-environment"
 	},
 	"require": {
-		"php": ">=5.1.0"
+		"php": ">=5.3"
 	},
     "autoload": {
 		"psr-4": { "marcovtwout\\YiiEnvironment\\": "" }
