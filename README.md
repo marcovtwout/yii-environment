@@ -110,10 +110,11 @@ Optional: in configConsole you can copy settings from configWeb by using value k
 ### Create mode-specific config files
 
 Create `config/mode_<mode>.php` files for the different modes. These will override or merge attributes that exist in the main config.
-See [example-config/mode_development.php](example-config/mode_development.php)
-See [example-config/mode_test.php](example-config/mode_test.php)
-See [example-config/mode_staging.php](example-config/mode_staging.php)
-See [example-config/mode_production.php](example-config/mode_production.php)
+
+- See [example-config/mode_development.php](example-config/mode_development.php)
+- See [example-config/mode_test.php](example-config/mode_test.php)
+- See [example-config/mode_staging.php](example-config/mode_staging.php)
+- See [example-config/mode_production.php](example-config/mode_production.php)
 
 Optional: also create a `config/local.php` file for local overrides.
 
