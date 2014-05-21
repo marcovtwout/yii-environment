@@ -4,9 +4,10 @@
  * This file should be removed when the application is deployed for production.
  */
 
+require('protected/vendor/autoload.php');
+
 // set environment
-require_once(dirname(__FILE__) . '/protected/extensions/yii-environment/Environment.php');
-$env = new Environment('TEST'); //override mode
+$env = new \marcovtwout\YiiEnvironment\Environment('TEST'); //override mode
  
 // set debug and trace level
 defined('YII_DEBUG') or define('YII_DEBUG', $env->yiiDebug);

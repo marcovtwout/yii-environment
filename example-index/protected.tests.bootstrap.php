@@ -1,8 +1,9 @@
 <?php
 
+require('../vendor/autoload.php');
+
 // set environment
-require_once(dirname(__FILE__) . '/../../protected/extensions/yii-environment/Environment.php');
-$env = new Environment('TEST'); //override mode
+$env = new \marcovtwout\YiiEnvironment\Environment('TEST'); //override mode
 
 // run Yii app
 require_once($env->yiitPath);

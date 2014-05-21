@@ -1,8 +1,9 @@
 <?php
 
+require('vendor/autoload.php');
+
 // set environment
-require_once(dirname(__FILE__) . '/extensions/yii-environment/Environment.php');
-$env = new Environment();
+$env = new \marcovtwout\YiiEnvironment\Environment;
 
 // run Yii app
 $config = $env->configConsole;

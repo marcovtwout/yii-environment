@@ -7,10 +7,10 @@
 
 return array(
 
-    // Set yiiPath (relative to Environment.php)
-    'yiiPath' => dirname(__FILE__) . '/../../../yii/framework/yii.php',
-    'yiicPath' => dirname(__FILE__) . '/../../../yii/framework/yiic.php',
-    'yiitPath' => dirname(__FILE__) . '/../../../yii/framework/yiit.php',
+    // Set yiiPath
+    'yiiPath' => __DIR__ . '/../vendor/yiisoft/yii/framework/yii.php',
+    'yiicPath' => __DIR__ . '/../vendor/yiisoft/yii/framework/yiic.php',
+    'yiitPath' => __DIR__ . '/../vendor/yiisoft/yii/framework/yiit.php',
 
     // Set YII_DEBUG and YII_TRACE_LEVEL flags
     'yiiDebug' => true,
@@ -20,7 +20,7 @@ return array(
     // CWebApplication properties can be configured here.
     'configWeb' => array(
     
-        'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+        'basePath' => __DIR__ . '/..',
         'name' => 'My Web Application',
         
         // Aliases
@@ -89,7 +89,7 @@ return array(
     // Use value 'inherit' to copy from generated configWeb.
     'configConsole' => array(
     
-        'basePath' => dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
+        'basePath' => __DIR__ . '/..',
         'name' => 'My Console Application',
         
         // Aliases
