@@ -1,5 +1,6 @@
 yii-environment
 ===============
+[![Latest Stable Version](https://poser.pugx.org/marcovtwout/yii-environment/v/stable.svg)](https://packagist.org/packages/marcovtwout/yii-environment)
 
 Environment-based configuration class (for example in development, testing, staging and production).
 
