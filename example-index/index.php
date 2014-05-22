@@ -1,6 +1,6 @@
 <?php
 
-require('../vendor/autoload.php');
+require('protected/vendor/autoload.php');
 
 // set environment
 $env = new \marcovtwout\YiiEnvironment\Environment;
