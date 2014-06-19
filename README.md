@@ -58,10 +58,9 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
 
 #### Linux/Mac
 
-1. Open your profile file:
- * Locally: `~/.profile` or `~/.bash_profile` (exact filename depends on your distro)
- * Globally: `/etc/profile`
- * Apache: `/etc/apache2/envvars` (if apache process doesn't use bash shell, try this file)
+1. Open profile files:
+ * Global bash shell: `/etc/profile`
+ * Apache (as service): `/etc/apache2/envvars`
 2. Add the following line: `export YII_ENVIRONMENT="DEVELOPMENT"`
  * Details: http://www.cyberciti.biz/faq/linux-unix-set-java_home-path-variable/
 
@@ -76,11 +75,6 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
 
 1. Create a file `mode.php` in the config directory of your application.
 2. Set the content of the file to: `DEVELOPMENT`
-
-#### Problems?
-
-* Q: After setting environment var, I get "Environment cannot be determined" when accessing the web application.
-* A: Make sure that where the Apache process starts, it can access the environment variable (by setting it as a system/global var).
 
 ## Usage
 
