@@ -84,7 +84,7 @@ class Environment
 
     /**
      * Initilizes the Environment class with the given mode
-     * @param constant $mode used to override automatically setting mode
+     * @param string $mode used to override automatically setting mode
      * @param string $configDir override default configDir
      */
     public function __construct($mode = null, $configDir = null)
@@ -255,8 +255,8 @@ class Environment
 
     /**
      * Loop through console config array, replacing values called 'inherit' by values from $this->configWeb
-     * @param type $array target array
-     * @param type $path array that keeps track of current path
+     * @param mixed $array target array
+     * @param string[] $path array that keeps track of current path
      */
     private function processInherits(&$array, $path = array())
     {
