@@ -28,7 +28,7 @@ If you want to customize this class or its config and modes, extend it! (see [Ex
 
 ## Requirements
 
-Tested on Yii 1.1.8 - 1.1.14, should work on all versions.
+Yii 1.1.*
 
 ## Installation
 
