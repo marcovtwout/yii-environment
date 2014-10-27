@@ -1,5 +1,9 @@
-yii-environment [![Latest Stable Version](https://poser.pugx.org/marcovtwout/yii-environment/v/stable.svg)](https://packagist.org/packages/marcovtwout/yii-environment)
+yii-environment
 ===============
+
+[![Latest Stable Version](http://img.shields.io/packagist/v/marcovtwout/yii-environment.svg?style=flat)](https://packagist.org/packages/anahkiasen/rocketeer)
+[![Total Downloads](http://img.shields.io/packagist/dt/marcovtwout/yii-environment.svg?style=flat)](https://packagist.org/packages/anahkiasen/rocketeer)
+[![Scrutinizer Quality Score](http://img.shields.io/scrutinizer/g/marcovtwout/yii-environment.svg?style=flat)](https://scrutinizer-ci.com/g/rocketeers/rocketeer/)
 
 Environment-based configuration class (for example in development, testing, staging and production).
 
