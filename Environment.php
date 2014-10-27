@@ -70,7 +70,7 @@ class Environment
 
     /**
      * Extend Environment class and merge parent array if you want to modify/extend these
-     * @return array list of valid modes
+     * @return string[] list of valid modes
      */
     protected function getValidModes()
     {
