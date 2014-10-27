@@ -280,7 +280,6 @@ class Environment
     private function getValueFromArray(&$array, $path)
     {
         if (count($path) > 1) {
-            $key = end($path);
             return $this->getValueFromArray($array[array_pop($path)], $path);
         } else {
             return $array[reset($path)];
