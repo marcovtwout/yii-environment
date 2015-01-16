@@ -22,7 +22,7 @@ Minimal changes to the index/bootstrap and existing config files are needed.
 The Environment is determined with PHP's getenv(), which searches $_SERVER and $_ENV.
 There are multiple ways to set the environment depending on your preference.
 Setting the environment variable is trivial on both Windows and Linux, instructions included.
-You can optionally override the environment by creating a `mode.php` in the config directory.
+You can optionally override the environment on a per-project basis.
 
 If you want to customize this class or its config and modes, extend it! (see [ExampleEnvironment.php](ExampleEnvironment.php))
 
@@ -85,6 +85,13 @@ Here are some examples for setting your environment to `DEVELOPMENT`.
 ### Update bootstrap files
 
 See [example-index/index.php](example-index/index.php)
+
+#### Override environment
+
+You can override the automatic determination of the current environment if needed:
+
+* Pass the environment to the constructor: `new Environment('TEST')`
+* For console applications, you can also do: `YII_ENVIRONMENT=STAGING ./yiic`
 
 ### Structure of config directory
 
