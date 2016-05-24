@@ -1,6 +1,12 @@
 ## Changelog
 
 
+### 5.0
+
+- CHG: Set namespace, reformat to PSR-2.
+- ADD: Added Composer support.
+
+
 ### 4.0
 
 - CHG: Removed function runYiiStatics(). Since Yii 1.1.14, you can now set path aliases in your configWeb. Remove calls to runYiiStatics() from your application, and see example-config/main.php for example on how to use aliases.
